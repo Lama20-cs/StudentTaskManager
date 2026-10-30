@@ -1,34 +1,55 @@
 tasks = []
 
+
 def add_task():
-    task = input("Enter task: ")
+    task = input("Enter task: ").strip()
+    if not task:
+        print("Task cannot be empty.")
+        return
     tasks.append({"task": task, "completed": False})
     print("Task added successfully.")
+
 
 def view_tasks():
     if not tasks:
         print("No tasks available.")
         return
+    for i, item in enumerate(tasks, 1):
+        status = "Completed" if item["completed"] else "Pending"
+        print(f"{i}. {item['task']} - {status}")
 
-    for i, task in enumerate(tasks, 1):
-        status = "Completed" if task["completed"] else "Pending"
-        print(f"{i}. {task['task']} - {status}")
+
+def get_task_number():
+    try:
+        number = int(input("Enter task number: "))
+    except ValueError:
+        print("Please enter a valid number.")
+        return None
+    if 1 <= number <= len(tasks):
+        return number
+    print("Task number out of range.")
+    return None
+
 
 def complete_task():
     view_tasks()
-    if tasks:
-        number = int(input("Enter task number: "))
-        if 1 <= number <= len(tasks):
-            tasks[number - 1]["completed"] = True
-            print("Task completed successfully.")
+    if not tasks:
+        return
+    number = get_task_number()
+    if number is not None:
+        tasks[number - 1]["completed"] = True
+        print("Task completed successfully.")
+
 
 def delete_task():
     view_tasks()
-    if tasks:
-        number = int(input("Enter task number: "))
-        if 1 <= number <= len(tasks):
-            tasks.pop(number - 1)
-            print("Task deleted successfully.")
+    if not tasks:
+        return
+    number = get_task_number()
+    if number is not None:
+        tasks.pop(number - 1)
+        print("Task deleted successfully.")
+
 
 while True:
     print("\n--- Student Task Manager ---")
