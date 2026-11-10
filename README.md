@@ -1,11 +1,5 @@
 # Student Task Manager
 
-A simple command-line task manager written in **Python**. It lets a student keep track of their tasks from a text menu.
+Solo project: a command-line app to add, view, complete, and delete tasks.
 
-## Features
-
-- **Add Task:** enter a new task, which starts as *Pending*.
-- **View Tasks:** show all tasks in a numbered list with their status (*Pending* or *Completed*).
-- **Complete Task:** mark a task as completed by its number.
-- **Delete:** remove a task by its number.
-- **Exit:** close the program from the menu.
+**Tech:** Python
